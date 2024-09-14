@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../src/utils/axios";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import About from "./components/About";
 import Services from "./components/Services";
@@ -8,9 +8,8 @@ const App = () => {
   const [products, setProducts] = useState([]);
 
   const getproducts = () => {
-    const api = "https://fakestoreapi.com/products";
     axios
-      .get(api)
+      .get('/products')
       .then((response) => {
         console.log(response);
         setProducts(response.data);
@@ -19,9 +18,8 @@ const App = () => {
   };
 
   const addproducts = () => {
-    const api = "https://fakestoreapi.com/products";
     axios
-      .post(api, {
+      .post('/products', {
         title: "test product",
         price: 13.5,
         description: "lorem ipsum set",
